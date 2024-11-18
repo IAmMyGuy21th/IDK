@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<button id="b">Button</button>
+
+<script>
+let button = document.getElementById("b")
+button.addEventListener("click", () => setClipboard("<empty clipboard>"));
+
+async function setClipboard(text) {
+  const type = "text/plain";
+  let a = text
+  while (1) {
+  	a = a + a
+    const blob = new Blob([a], { type });
+  	const data = [new ClipboardItem({ [type]: blob })];
+  	await navigator.clipboard.write(data);
+  }
+  const blob = new Blob([text], { type });
+  const data = [new ClipboardItem({ [type]: blob })];
+  await navigator.clipboard.write(data);
+}
+</script>
+
+</body>
+</html>
